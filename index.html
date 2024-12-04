@@ -1,53 +1,59 @@
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
+        body {
+            text-align: center;
+            background-image: linear-gradient(rgb(255, 0, 0), rgb(0, 0, 0));
+            min-width: 100%;
+            min-height: 100%;
+            margin: 0;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
         .curved-video {
             width: 500px;  /* Set the width of the video */
             height: 300px; /* Set the height of the video */
             border-radius: 25px; /* Round the corners */
-            object-fit: cover; /* Ensures the video covers the container */
-  <style>
-     body{
-         text-align: center;
-         background-image: linear-gradient(rgb(255, 0, 0), rgb(0, 0, 0));
-         min-width: 100%;
-         min-height: 100%;
-      }
-  </style>
-<html>
-<head>
-  <style>
-     body{
-         text-align: center;
-         background-image: linear-gradient(rgb(255, 0, 0), rgb(0, 0, 0));
-         min-width: 100%;
-         min-height: 100%;
-      }
-  </style>
+            overflow: hidden; /* Prevent content overflow */
+            margin: 20px auto; /* Center the video container */
+        }
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        .info-paragraph {
+            margin: 20px auto;
+            max-width: 800px;
+            font-size: 18px;
+            line-height: 1.6;
+            text-align: left;
+        }
+    </style>
 </head>
-
 <body>
-
+    <h1>This is a website all about UNITED</h1>
+    <img src="https://pbs.twimg.com/media/F_3_MMKWAAAHAei?format=jpg&name=large" width="200" alt="United Image">
+    <p style="font-size: 24px;">
+        Below is a video about all the goals of the previous Man United season.
+    </p>
+    <div class="curved-video">
+        <iframe src="https://www.youtube.com/embed/niWs77uRCiY?si=NBeXMhqFAowr_Nky" 
+                title="YouTube video player" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                allowfullscreen>
+        </iframe>
+    </div>
+    <p class="info-paragraph">
+        Manchester United has won more trophies than any other club in English football other than Liverpool FC. 
+        It has won 20 League titles, 13 FA Cups, six League Cups, and 21 FA Community Shields. United has also won 
+        three UEFA Champions Leagues, one UEFA Europa League, one UEFA Cup Winners' Cup, one UEFA Super Cup, one Intercontinental 
+        Cup, and one FIFA Club World Cup. In 1998–99, the club became the first club in the history of English football 
+        to win the continental European treble. It won the UEFA Europa League in 2016–17 and became one of five clubs 
+        to win all three top UEFA club competitions.
+    </p>
 </body>
-
-</html>
-
-</head>
-
-<body>
-<h1>This is a website all about UNITED</h1>
-
-<img src="https://pbs.twimg.com/media/F_3_MMKWAAAHAei?format=jpg&name=large" width="200">
-
-<p style="font-size: 24px;">Below is a video about all the goals of the previous man united season.</p>
-  <video class="curved-video" controls>
-<iframe width="460" height="250" src="https://www.youtube.com/embed/niWs77uRCiY?si=NBeXMhqFAowr_Nky" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-
-
-
-
-</body>
-
 </html>
