@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,18 +13,52 @@
             color: white;
             font-family: Arial, sans-serif;
         }
-        .curved-video {
-            width: 500px;  /* Set the width of the video */
-            height: 300px; /* Set the height of the video */
-            border-radius: 25px; /* Round the corners */
-            overflow: hidden; /* Prevent content overflow */
-            margin: 20px auto; /* Center the video container */
+
+        /* Navigation Bar Styling */
+        .navbar {
+            overflow: hidden;
+            background-color: black;
+            position: sticky;
+            top: 0;
+            width: 100%;
+            display: flex;
+            justify-content: center;
         }
+
+        .navbar a {
+            display: inline-block;
+            color: white;
+            text-align: center;
+            padding: 14px 20px;
+            text-decoration: none;
+            font-size: 18px;
+            transition: color 0.3s;
+        }
+
+        /* Hover effect for red text */
+        .navbar a:hover {
+            color: red;
+        }
+
+        /* Active Link Styling */
+        .navbar a.active {
+            color: red;
+        }
+
+        .curved-video {
+            width: 500px;
+            height: 300px;
+            border-radius: 25px;
+            overflow: hidden;
+            margin: 20px auto;
+        }
+
         iframe {
             width: 100%;
             height: 100%;
             border: none;
         }
+
         .info-paragraph {
             margin: 20px auto;
             max-width: 800px;
@@ -35,11 +69,22 @@
     </style>
 </head>
 <body>
+    <!-- Navigation Bar -->
+    <div class="navbar">
+        <a href="#" class="active">Home</a> <!-- Home Link -->
+        <a href="https://www.manutd.com/en/players-and-staff" target="_blank">Players</a> <!-- Players Link -->
+        <a href="#trophies">Trophies</a>
+        <a href="https://docs.google.com/forms/d/1wo_U783hndwnHbsrMN337UsJGNY2vvghd7xo7o5au3I/edit?pli=1" target="_blank">Feedback</a> <!-- Feedback Link (Updated) -->
+        <a href="https://store.manutd.com/en" target="_blank">Store</a> <!-- Store Link -->
+    </div>
+    
     <h1>This is a website all about UNITED</h1>
     <img src="https://pbs.twimg.com/media/F_3_MMKWAAAHAei?format=jpg&name=large" width="200" alt="United Image">
+    
     <p style="font-size: 24px;">
         Below is a video about all the goals of the previous Man United season.
     </p>
+    
     <div class="curved-video">
         <iframe src="https://www.youtube.com/embed/niWs77uRCiY?si=NBeXMhqFAowr_Nky" 
                 title="YouTube video player" 
@@ -47,7 +92,9 @@
                 allowfullscreen>
         </iframe>
     </div>
-    <p class="info-paragraph">
+    
+    <!-- Trophies Section -->
+    <p class="info-paragraph" id="trophies">
         Manchester United has won more trophies than any other club in English football other than Liverpool FC. 
         It has won 20 League titles, 13 FA Cups, six League Cups, and 21 FA Community Shields. United has also won 
         three UEFA Champions Leagues, one UEFA Europa League, one UEFA Cup Winners' Cup, one UEFA Super Cup, one Intercontinental 
