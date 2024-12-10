@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&family=Poppins:wght@400;600&family=Oswald:wght@300;400&display=swap" rel="stylesheet">
+    
     <style>
         body {
             text-align: center;
@@ -11,7 +13,7 @@
             min-height: 100%;
             margin: 0;
             color: white;
-            font-family: Arial, sans-serif;
+            font-family: 'Roboto', sans-serif;
         }
 
         /* Navigation Bar Styling */
@@ -23,6 +25,7 @@
             width: 100%;
             display: flex;
             justify-content: center;
+            z-index: 1000;
         }
 
         .navbar a {
@@ -32,25 +35,31 @@
             padding: 14px 20px;
             text-decoration: none;
             font-size: 18px;
-            transition: color 0.3s;
+            font-family: 'Poppins', sans-serif;
+            transition: color 0.3s, transform 0.3s, background-color 0.3s;
         }
 
-        /* Hover effect for red text */
+        /* Hover effect for navbar links */
         .navbar a:hover {
             color: red;
+            transform: scale(1.1); /* Slight zoom effect */
+            background-color: rgba(255, 0, 0, 0.2); /* Light red background on hover */
         }
 
         /* Active Link Styling */
         .navbar a.active {
             color: red;
+            font-weight: bold;
         }
 
+        /* Page content */
         .curved-video {
             width: 500px;
             height: 300px;
             border-radius: 25px;
             overflow: hidden;
             margin: 20px auto;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
         }
 
         iframe {
@@ -65,6 +74,38 @@
             font-size: 18px;
             line-height: 1.6;
             text-align: left;
+            font-family: 'Oswald', sans-serif;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 36px;
+            font-weight: 600;
+            color: #fff;
+            margin-top: 50px;
+        }
+
+        img {
+            margin-top: 20px;
+            border-radius: 15px; /* Curved rectangle with moderate radius */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        p {
+            font-size: 22px;
+            font-family: 'Roboto', sans-serif;
+            margin-top: 20px;
+        }
+
+        /* Footer Styling */
+        footer {
+            background-color: red; /* Red background for footer */
+            padding: 20px;
+            color: white;
+            font-size: 16px;
+            text-align: center;
         }
     </style>
 </head>
@@ -74,16 +115,14 @@
         <a href="#" class="active">Home</a> <!-- Home Link -->
         <a href="https://www.manutd.com/en/players-and-staff" target="_blank">Players</a> <!-- Players Link -->
         <a href="#trophies">Trophies</a>
-        <a href="https://docs.google.com/forms/d/1wo_U783hndwnHbsrMN337UsJGNY2vvghd7xo7o5au3I/edit?pli=1" target="_blank">Feedback</a> <!-- Feedback Link (Updated) -->
+        <a href="https://www.example.com/feedback" target="_blank">Feedback</a> <!-- Feedback Link -->
         <a href="https://store.manutd.com/en" target="_blank">Store</a> <!-- Store Link -->
     </div>
     
     <h1>This is a website all about UNITED</h1>
     <img src="https://pbs.twimg.com/media/F_3_MMKWAAAHAei?format=jpg&name=large" width="200" alt="United Image">
     
-    <p style="font-size: 24px;">
-        Below is a video about all the goals of the previous Man United season.
-    </p>
+    <p>Below is a video about all the goals of the previous Man United season.</p>
     
     <div class="curved-video">
         <iframe src="https://www.youtube.com/embed/niWs77uRCiY?si=NBeXMhqFAowr_Nky" 
@@ -102,5 +141,16 @@
         to win the continental European treble. It won the UEFA Europa League in 2016–17 and became one of five clubs 
         to win all three top UEFA club competitions.
     </p>
+
+    <!-- Additional Paragraph -->
+    <p class="info-paragraph">
+        The team first entered the English First Division, then the highest league in English football, for the start of the 1892-93 season. Our club name changed to Manchester United Football Club in 1902, and we won the first of our 20 English League titles in 1908. In 1910, we moved to Old Trafford, our current stadium.
+    </p>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Man United Fan Page | All Rights Reserved</p>
+    </footer>
+
 </body>
 </html>
