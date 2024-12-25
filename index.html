@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&family=Poppins:wght@400;600&family=Oswald:wght@300;400&display=swap" rel="stylesheet">
-    
+
     <style>
         body {
             text-align: center;
@@ -14,7 +14,6 @@
             margin: 0;
             color: white;
             font-family: 'Roboto', sans-serif;
-            
         }
 
         /* Navigation Bar Styling */
@@ -43,8 +42,8 @@
         /* Hover effect for navbar links */
         .navbar a:hover {
             color: red;
-            transform: scale(1.1);
-            background-color: rgba(255, 0, 0, 0.2);
+            transform: scale(1.1); /* Slight zoom effect */
+            background-color: rgba(255, 0, 0, 0.2); /* Light red background on hover */
         }
 
         /* Active Link Styling */
@@ -90,7 +89,7 @@
 
         img {
             margin-top: 20px;
-            border-radius: 15px;
+            border-radius: 15px; /* Curved rectangle with moderate radius */
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
         }
 
@@ -102,54 +101,30 @@
 
         /* Footer Styling */
         footer {
-            background-color: red;
+            background-color: red; /* Red background for footer */
             padding: 20px;
             color: white;
             font-size: 16px;
             text-align: center;
-        }
-
-        /* Chatbot Styling */
-        #chatbox {
-            width: 100%;
-            height: 300px;
-            border: 1px solid #ccc;
-            padding: 10px;
-            overflow-y: scroll;
-            background-color: #333;
-            color: white;
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            z-index: 100;
-        }
-        
-        #userInput {
-            width: 80%;
-            padding: 10px;
-            margin-top: 10px;
-        }
-        
-        #submitBtn {
-            padding: 10px;
         }
     </style>
 </head>
 <body>
     <!-- Navigation Bar -->
     <div class="navbar">
-        <a href="#" class="active">Home</a>
-        <a href="https://www.manutd.com/en/players-and-staff" target="_blank">Players</a>
+        <a href="#" class="active">Home</a> <!-- Home Link -->
+        <a href="https://www.manutd.com/en/players-and-staff" target="_blank">Players</a> <!-- Players Link -->
         <a href="#trophies">Trophies</a>
-        <a href="https://docs.google.com/forms/d/1wo_U783hndwnHbsrMN337UsJGNY2vvghd7xo7o5au3I/edit" target="_blank">Feedback</a>
-        <a href="https://store.manutd.com/en" target="_blank">Store</a>
+        <a href="https://www.example.com/feedback" target="_blank">Feedback</a> <!-- Feedback Link -->
+        <a href="https://docs.google.com/forms/d/1wo_U783hndwnHbsrMN337UsJGNY2vvghd7xo7o5au3I/edit" target="_blank">Feedback</a> <!-- Feedback Link -->
+        <a href="https://store.manutd.com/en" target="_blank">Store</a> <!-- Store Link -->
     </div>
-    
+
     <h1>This is a website all about UNITED</h1>
     <img src="https://pbs.twimg.com/media/F_3_MMKWAAAHAei?format=jpg&name=large" width="200" alt="United Image">
-    
+
     <p>Below is a video about all the goals of the previous Man United season.</p>
-    
+
     <div class="curved-video">
         <iframe src="https://www.youtube.com/embed/niWs77uRCiY?si=NBeXMhqFAowr_Nky" 
                 title="YouTube video player" 
@@ -157,7 +132,7 @@
                 allowfullscreen>
         </iframe>
     </div>
-    
+
     <!-- Trophies Section -->
     <p class="info-paragraph" id="trophies">
         Manchester United has won more trophies than any other club in English football other than Liverpool FC. 
@@ -178,33 +153,5 @@
         <p>&copy; 2024 Man United Fan Page | All Rights Reserved</p>
     </footer>
 
-    <script>
-        const chatbox = document.getElementById('chatbox');
-        const userInput = document.getElementById('userInput');
-        const submitBtn = document.getElementById('submitBtn');
-
-        function displayMessage(message, sender) {
-            const messageElement = document.createElement('p');
-            messageElement.textContent = sender + ': ' + message;
-            chatbox.appendChild(messageElement);
-            chatbox.scrollTop = chatbox.scrollHeight;
-        }
-
-        submitBtn.addEventListener('click', () => {
-            const question = userInput.value.toLowerCase();
-            displayMessage(question, 'You');
-
-            if (question.includes('fees')) {
-                displayMessage('The fees for Year 5 are 4,200 BHD per year.', 'Chatbot');
-            } else if (question.includes('uniform')) {
-                displayMessage('You can buy uniforms at Zaks in Bahrain Mall or order online.', 'Chatbot');
-            } else if (question.includes('school day')) {
-                displayMessage('School starts at 7:30 AM and ends at 2:30 PM for Year 5 students.', 'Chatbot');
-            } else {
-                displayMessage('Sorry, I don\'t have information on that.', 'Chatbot');
-            }
-            userInput.value = '';
-        });
-    </script>
 </body>
 </html>
