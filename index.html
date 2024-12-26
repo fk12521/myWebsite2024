@@ -13,7 +13,7 @@
             margin: 0;
             color: white;
             font-family: 'Roboto', sans-serif;
-            padding-bottom: 0px;
+            padding-bottom: 0px; /* Removed padding-bottom */
         }
 
         /* Navigation Bar Styling */
@@ -111,7 +111,7 @@
         .chatbot-icon {
             width: 60px;
             height: 60px;
-            background-color: navy;
+            background-color: #FF3B30; /* Red theme */
             border-radius: 50%;
             position: fixed;
             bottom: 20px;
@@ -144,18 +144,20 @@
         }
 
         .chatbot-header {
-            background-color: navy;
+            background-color: #FF3B30; /* Red header */
             color: white;
             padding: 10px;
             text-align: center;
             font-size: 18px;
+            font-weight: bold;
         }
 
         .chatbot-messages {
             flex: 1;
             padding: 10px;
             overflow-y: auto;
-            background-color: #f0f0f0;
+            background-color: #f9f9f9;
+            border-bottom: 1px solid #ddd;
         }
 
         .chatbot-footer {
@@ -168,14 +170,19 @@
             border: none;
             padding: 10px;
             font-size: 16px;
+            border-radius: 5px;
+            margin: 10px;
+            background-color: #f0f0f0;
         }
 
         .chatbot-footer button {
-            background-color: navy;
+            background-color: #FF3B30; /* Red button */
             color: white;
             border: none;
             padding: 10px 15px;
             cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
         }
 
     </style>
