@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&family=Poppins:wght@400;600&family=Oswald:wght@300;400&display=swap" rel="stylesheet">
-
     <style>
         body {
             text-align: center;
@@ -40,7 +39,6 @@
             transition: color 0.3s, transform 0.3s, background-color 0.3s;
         }
 
-        /* Hover effect for navbar links */
         .navbar a:hover {
             color: red;
             transform: scale(1.1);
@@ -112,23 +110,22 @@
         /* Chatbot Styling */
         #chatbox {
             width: 100%;
-            height: 4px;
+            height: 150px;
             border: 1px solid #ccc;
             padding: 10px;
             overflow-y: scroll;
             background-color: #333;
             color: white;
             position: fixed;
-            bottom: 0;
+            bottom: 50px;
             left: 0;
             z-index: 100;
             margin: 0;
         }
 
         #userInput {
-            width: 80%;
+            width: 70%;
             padding: 10px;
-            margin-top: 10px;
         }
 
         #submitBtn {
@@ -189,19 +186,32 @@
         const submitBtn = document.getElementById('submitBtn');
 
         async function getAIResponse(question) {
-            const apiKey = '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';
-            const response = await fetch('https://api.openai.com/v1/completions', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${apiKey}` },
-                body: JSON.stringify({ model: 'gpt-3.5-turbo', prompt: question, max_tokens: 100 })
-            });
-            const data = await response.json();
-            return data.choices[0].text.trim();
+            try {
+                const response = await fetch('https://api.openai.com/v1/chat/completions', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Bearer YOUR_API_KEY'
+                    },
+                    body: JSON.stringify({
+                        model: 'gpt-3.5-turbo',
+                        messages: [{ role: 'user', content: question }],
+                        max_tokens: 100
+                    })
+                });
+
+                if (!response.ok) throw new Error('Failed to fetch AI response');
+                const data = await response.json();
+                return data.choices[0].message.content.trim();
+            } catch (error) {
+                console.error('Error:', error);
+                return "Sorry, I couldn't process your request. Please try again later.";
+            }
         }
 
         function displayMessage(message, sender) {
             const messageElement = document.createElement('p');
-            messageElement.textContent = sender + ': ' + message;
+            messageElement.textContent = `${sender}: ${message}`;
             chatbox.appendChild(messageElement);
             chatbox.scrollTop = chatbox.scrollHeight;
         }
