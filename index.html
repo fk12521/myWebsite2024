@@ -13,7 +13,7 @@
             margin: 0;
             color: white;
             font-family: 'Roboto', sans-serif;
-            padding-bottom: 0px; /* Removed padding-bottom */
+            padding-bottom: 0px;
         }
 
         /* Navigation Bar Styling */
@@ -45,13 +45,11 @@
             background-color: rgba(255, 0, 0, 0.2);
         }
 
-        /* Active Link Styling */
         .navbar a.active {
             color: red;
             font-weight: bold;
         }
 
-        /* Page content */
         .curved-video {
             width: 500px;
             height: 300px;
@@ -98,7 +96,6 @@
             margin-top: 20px;
         }
 
-        /* Footer Styling */
         footer {
             background-color: red;
             padding: 20px;
@@ -111,7 +108,7 @@
         .chatbot-icon {
             width: 60px;
             height: 60px;
-            background-color: #FF3B30; /* Red theme */
+            background-color: #FF3B30;
             border-radius: 50%;
             position: fixed;
             bottom: 20px;
@@ -144,7 +141,7 @@
         }
 
         .chatbot-header {
-            background-color: #FF3B30; /* Red header */
+            background-color: #FF3B30;
             color: white;
             padding: 10px;
             text-align: center;
@@ -173,10 +170,16 @@
             border-radius: 5px;
             margin: 10px;
             background-color: #f0f0f0;
+            color: #888;
+            cursor: not-allowed;
+        }
+
+        .chatbot-footer input[readonly] {
+            cursor: not-allowed;
         }
 
         .chatbot-footer button {
-            background-color: #FF3B30; /* Red button */
+            background-color: #FF3B30;
             color: white;
             border: none;
             padding: 10px 15px;
@@ -185,6 +188,23 @@
             border-radius: 5px;
         }
 
+        /* Left icons (file, emojis, send arrow) */
+        .left-icons {
+            display: flex;
+            align-items: center;
+        }
+
+        .left-icons img {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+        }
+
+        .message-time {
+            font-size: 12px;
+            color: #aaa;
+            margin-top: 5px;
+        }
     </style>
 </head>
 <body>
@@ -210,7 +230,6 @@
         </iframe>
     </div>
 
-    <!-- Trophies Section -->
     <p class="info-paragraph" id="trophies">
         Manchester United has won more trophies than any other club in English football other than Liverpool FC. 
         It has won 20 League titles, 13 FA Cups, six League Cups, and 21 FA Community Shields. United has also won 
@@ -224,7 +243,6 @@
         The team first entered the English First Division, then the highest league in English football, for the start of the 1892-93 season. Our club name changed to Manchester United Football Club in 1902, and we won the first of our 20 English League titles in 1908. In 1910, we moved to Old Trafford, our current stadium.
     </p>
 
-    <!-- Footer -->
     <footer>
         <p>&copy; 2024 Man United Fan Page | All Rights Reserved</p>
     </footer>
@@ -237,8 +255,14 @@
         <div class="chatbot-header">Chatbot</div>
         <div class="chatbot-messages" id="chatMessages"></div>
         <div class="chatbot-footer">
-            <input type="text" id="userInput" placeholder="Ask a question...">
-            <button onclick="sendMessage()">Send</button>
+            <div class="left-icons">
+                <img src="https://img.icons8.com/ios-filled/50/ffffff/file.png" alt="File Icon">
+                <img src="https://img.icons8.com/ios-filled/50/ffffff/smile.png" alt="Emoji Icon">
+            </div>
+            <input type="text" id="userInput" value="Send a message..." readonly>
+            <button onclick="sendMessage()">
+                <img src="https://img.icons8.com/ios-filled/50/ffffff/send.png" alt="Send Arrow">
+            </button>
         </div>
     </div>
 
@@ -251,19 +275,21 @@
         }
 
         async function sendMessage() {
-            const userInput = document.getElementById('userInput');
-            const userMessage = userInput.value.trim();
-            if (userMessage) {
-                appendMessage('You', userMessage);
+            const userMessage = document.getElementById('userInput').value.trim();
+            if (userMessage && userMessage !== "Send a message...") {
+                const currentTime = new Date().toLocaleString();
+                appendMessage('You', userMessage, currentTime);
                 const aiResponse = await getAIResponse(userMessage);
-                appendMessage('Chatbot', aiResponse);
-                userInput.value = '';
+                appendMessage('Chatbot', aiResponse, currentTime);
             }
         }
 
-        function appendMessage(sender, message) {
+        function appendMessage(sender, message, time) {
             const messageDiv = document.createElement('div');
-            messageDiv.textContent = `${sender}: ${message}`;
+            messageDiv.innerHTML = `
+                <strong>${sender}:</strong> ${message}
+                <div class="message-time">${time}</div>
+            `;
             chatMessages.appendChild(messageDiv);
             chatMessages.scrollTop = chatMessages.scrollHeight;
         }
