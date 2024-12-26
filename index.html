@@ -6,23 +6,19 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&family=Poppins:wght@400;600&family=Oswald:wght@300;400&display=swap" rel="stylesheet">
     <style>
         body {
-            text-align: center;
-            background-image: linear-gradient(rgb(255, 0, 0), rgb(0, 0, 0));
-            min-width: 100%;
-            min-height: 100%;
+            background-color: #111;
             margin: 0;
-            color: white;
             font-family: 'Roboto', sans-serif;
-            padding-bottom: 0px;
+            color: #fff;
+            text-align: center;
         }
 
         /* Navigation Bar Styling */
         .navbar {
             overflow: hidden;
-            background-color: black;
+            background-color: #000;
             position: sticky;
             top: 0;
-            width: 100%;
             display: flex;
             justify-content: center;
             z-index: 1000;
@@ -30,85 +26,25 @@
 
         .navbar a {
             display: inline-block;
-            color: white;
+            color: #fff;
             text-align: center;
             padding: 14px 20px;
-            text-decoration: none;
             font-size: 18px;
+            text-decoration: none;
             font-family: 'Poppins', sans-serif;
-            transition: color 0.3s, transform 0.3s, background-color 0.3s;
+            transition: color 0.3s, background-color 0.3s;
         }
 
         .navbar a:hover {
             color: red;
-            transform: scale(1.1);
             background-color: rgba(255, 0, 0, 0.2);
         }
 
-        .navbar a.active {
-            color: red;
-            font-weight: bold;
-        }
-
-        .curved-video {
-            width: 500px;
-            height: 300px;
-            border-radius: 25px;
-            overflow: hidden;
-            margin: 20px auto;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-        }
-
-        iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-
-        .info-paragraph {
-            margin: 20px auto;
-            max-width: 800px;
-            font-size: 18px;
-            line-height: 1.6;
-            text-align: left;
-            font-family: 'Oswald', sans-serif;
-            padding: 20px;
-            border-radius: 10px;
-        }
-
-        h1 {
-            font-family: 'Poppins', sans-serif;
-            font-size: 36px;
-            font-weight: 600;
-            color: #fff;
-            margin-top: 50px;
-        }
-
-        img {
-            margin-top: 20px;
-            border-radius: 15px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-        }
-
-        p {
-            font-size: 22px;
-            font-family: 'Roboto', sans-serif;
-            margin-top: 20px;
-        }
-
-        footer {
-            background-color: red;
-            padding: 20px;
-            color: white;
-            font-size: 16px;
-            text-align: center;
-        }
-
-        /* Chatbot Styling */
+        /* Chatbot Icon Styling */
         .chatbot-icon {
             width: 60px;
             height: 60px;
-            background-color: #FF3B30;
+            background-color: red;
             border-radius: 50%;
             position: fixed;
             bottom: 20px;
@@ -117,8 +53,8 @@
             justify-content: center;
             align-items: center;
             cursor: pointer;
-            z-index: 1000;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
         }
 
         .chatbot-icon img {
@@ -126,26 +62,26 @@
             height: 30px;
         }
 
+        /* Chatbot Window Styling */
         .chatbot-window {
+            display: none;
             width: 350px;
             height: 450px;
-            background-color: #fff;
             position: fixed;
             bottom: 80px;
             right: 20px;
+            background-color: #fff;
             border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-            display: none;
             flex-direction: column;
-            overflow: hidden;
         }
 
         .chatbot-header {
-            background-color: #FF3B30;
+            background-color: red;
             color: white;
             padding: 10px;
-            text-align: center;
             font-size: 18px;
+            text-align: center;
             font-weight: bold;
         }
 
@@ -160,38 +96,35 @@
         .chatbot-footer {
             display: flex;
             border-top: 1px solid #ccc;
+            padding: 10px;
         }
 
         .chatbot-footer input {
             flex: 1;
             border: none;
+            background-color: #f0f0f0;
+            color: #888;
             padding: 10px;
             font-size: 16px;
             border-radius: 5px;
-            margin: 10px;
-            background-color: #f0f0f0;
-            color: #888;
-            cursor: not-allowed;
-        }
-
-        .chatbot-footer input[readonly] {
-            cursor: not-allowed;
+            cursor: text;
         }
 
         .chatbot-footer button {
-            background-color: #FF3B30;
+            background-color: red;
             color: white;
-            border: none;
             padding: 10px 15px;
+            border: none;
             cursor: pointer;
-            font-size: 16px;
             border-radius: 5px;
+            margin-left: 10px;
         }
 
-        /* Left icons (file, emojis, send arrow) */
+        /* Left icons */
         .left-icons {
             display: flex;
             align-items: center;
+            margin-right: 10px;
         }
 
         .left-icons img {
@@ -205,52 +138,29 @@
             color: #aaa;
             margin-top: 5px;
         }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .chatbot-window {
+                width: 100%;
+                height: 400px;
+            }
+        }
     </style>
 </head>
 <body>
-    <!-- Navigation Bar -->
     <div class="navbar">
-        <a href="#" class="active">Home</a>
-        <a href="https://www.manutd.com/en/players-and-staff" target="_blank">Players</a>
-        <a href="#trophies">Trophies</a>
-        <a href="https://www.example.com/feedback" target="_blank">Feedback</a>
-        <a href="https://store.manutd.com/en" target="_blank">Store</a>
+        <a href="#">Home</a>
+        <a href="#">Players</a>
+        <a href="#">Trophies</a>
+        <a href="#">Feedback</a>
+        <a href="#">Store</a>
     </div>
 
-    <h1>This is a website all about UNITED</h1>
-    <img src="https://pbs.twimg.com/media/F_3_MMKWAAAHAei?format=jpg&name=large" width="200" alt="United Image">
-
-    <p>Below is a video about all the goals of the previous Man United season.</p>
-
-    <div class="curved-video">
-        <iframe src="https://www.youtube.com/embed/niWs77uRCiY?si=NBeXMhqFAowr_Nky" 
-                title="YouTube video player" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                allowfullscreen>
-        </iframe>
-    </div>
-
-    <p class="info-paragraph" id="trophies">
-        Manchester United has won more trophies than any other club in English football other than Liverpool FC. 
-        It has won 20 League titles, 13 FA Cups, six League Cups, and 21 FA Community Shields. United has also won 
-        three UEFA Champions Leagues, one UEFA Europa League, one UEFA Cup Winners' Cup, one UEFA Super Cup, one Intercontinental 
-        Cup, and one FIFA Club World Cup. In 1998–99, the club became the first club in the history of English football 
-        to win the continental European treble. It won the UEFA Europa League in 2016–17 and became one of five clubs 
-        to win all three top UEFA club competitions.
-    </p>
-
-    <p class="info-paragraph">
-        The team first entered the English First Division, then the highest league in English football, for the start of the 1892-93 season. Our club name changed to Manchester United Football Club in 1902, and we won the first of our 20 English League titles in 1908. In 1910, we moved to Old Trafford, our current stadium.
-    </p>
-
-    <footer>
-        <p>&copy; 2024 Man United Fan Page | All Rights Reserved</p>
-    </footer>
-
-    <!-- Chatbot -->
     <div class="chatbot-icon" onclick="toggleChatbot()">
         <img src="https://img.icons8.com/ios-filled/50/ffffff/chat.png" alt="Chat Icon">
     </div>
+
     <div class="chatbot-window" id="chatbotWindow">
         <div class="chatbot-header">Chatbot</div>
         <div class="chatbot-messages" id="chatMessages"></div>
@@ -259,8 +169,8 @@
                 <img src="https://img.icons8.com/ios-filled/50/ffffff/file.png" alt="File Icon">
                 <img src="https://img.icons8.com/ios-filled/50/ffffff/smile.png" alt="Emoji Icon">
             </div>
-            <input type="text" id="userInput" value="Send a message..." readonly>
-            <button onclick="sendMessage()">
+            <input type="text" id="userInput" placeholder="Send a message..." oninput="enableSendButton()">
+            <button id="sendBtn" onclick="sendMessage()" disabled>
                 <img src="https://img.icons8.com/ios-filled/50/ffffff/send.png" alt="Send Arrow">
             </button>
         </div>
@@ -269,16 +179,28 @@
     <script>
         const chatbotWindow = document.getElementById('chatbotWindow');
         const chatMessages = document.getElementById('chatMessages');
+        const sendBtn = document.getElementById('sendBtn');
+        const userInput = document.getElementById('userInput');
 
         function toggleChatbot() {
             chatbotWindow.style.display = chatbotWindow.style.display === 'none' ? 'flex' : 'none';
         }
 
+        function enableSendButton() {
+            if (userInput.value.trim() !== "") {
+                sendBtn.disabled = false;
+            } else {
+                sendBtn.disabled = true;
+            }
+        }
+
         async function sendMessage() {
-            const userMessage = document.getElementById('userInput').value.trim();
-            if (userMessage && userMessage !== "Send a message...") {
+            const userMessage = userInput.value.trim();
+            if (userMessage) {
                 const currentTime = new Date().toLocaleString();
                 appendMessage('You', userMessage, currentTime);
+                userInput.value = '';
+                sendBtn.disabled = true;
                 const aiResponse = await getAIResponse(userMessage);
                 appendMessage('Chatbot', aiResponse, currentTime);
             }
