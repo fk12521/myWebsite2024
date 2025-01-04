@@ -16,7 +16,6 @@
             padding-bottom: 0px;
         }
 
-        /* Navigation Bar Styling */
         .navbar {
             overflow: hidden;
             background-color: black;
@@ -104,7 +103,6 @@
             text-align: center;
         }
 
-        /* Chatbot Styling */
         .chatbot-icon {
             width: 60px;
             height: 60px;
@@ -183,27 +181,31 @@
             border-radius: 5px;
         }
 
-        /* Left icons (file, emojis, send arrow) */
-        .left-icons {
+        .suggestion-buttons {
             display: flex;
-            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 10px 0;
         }
 
-        .left-icons img {
-            width: 20px;
-            height: 20px;
-            margin-right: 10px;
+        .suggestion-buttons button {
+            background-color: #f0f0f0;
+            color: #555;
+            border: 1px solid #ddd;
+            padding: 8px 12px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 14px;
         }
 
-        .message-time {
-            font-size: 12px;
-            color: #aaa;
-            margin-top: 5px;
+        .suggestion-buttons button:hover {
+            background-color: #FF3B30;
+            color: white;
+            border-color: #FF3B30;
         }
     </style>
 </head>
 <body>
-    <!-- Navigation Bar -->
     <div class="navbar">
         <a href="#" class="active">Home</a>
         <a href="https://www.manutd.com/en/players-and-staff" target="_blank">Players</a>
@@ -234,26 +236,26 @@
         to win all three top UEFA club competitions.
     </p>
 
-    <p class="info-paragraph">
-        The team first entered the English First Division, then the highest league in English football, for the start of the 1892-93 season. Our club name changed to Manchester United Football Club in 1902, and we won the first of our 20 English League titles in 1908. In 1910, we moved to Old Trafford, our current stadium.
-    </p>
-
     <footer>
         <p>&copy; 2024 Man United Fan Page | All Rights Reserved</p>
     </footer>
 
-    <!-- Chatbot -->
     <div class="chatbot-icon" onclick="toggleChatbot()">
         <img src="https://img.icons8.com/ios-filled/50/ffffff/chat.png" alt="Chat Icon">
     </div>
+
     <div class="chatbot-window" id="chatbotWindow">
         <div class="chatbot-header">Chatbot</div>
         <div class="chatbot-messages" id="chatMessages"></div>
+        <div class="suggestion-buttons" id="suggestionButtons" style="display: none;">
+            <button onclick="sendQuickMessage('School Uniform')">School Uniform</button>
+            <button onclick="sendQuickMessage('Primary or Senior School')">Primary or Senior School</button>
+            <button onclick="sendQuickMessage('New Campus')">New Campus</button>
+            <button onclick="sendQuickMessage('School Calendar')">School Calendar</button>
+            <button onclick="sendQuickMessage('Timetable')">Timetable</button>
+            <button onclick="sendQuickMessage('Directions to School')">Directions to School</button>
+        </div>
         <div class="chatbot-footer">
-            <div class="left-icons">
-                <img src="https://img.icons8.com/ios-filled/50/ffffff/file.png" alt="File Icon">
-                <img src="https://img.icons8.com/ios-filled/50/ffffff/smile.png" alt="Emoji Icon">
-            </div>
             <input type="text" id="userInput" placeholder="Send a message...">
             <button onclick="sendMessage()">
                 <img src="https://img.icons8.com/ios-filled/50/ffffff/send.png" alt="Send Arrow">
@@ -264,6 +266,7 @@
     <script>
         const chatbotWindow = document.getElementById('chatbotWindow');
         const chatMessages = document.getElementById('chatMessages');
+        const suggestionButtons = document.getElementById('suggestionButtons');
 
         function toggleChatbot() {
             chatbotWindow.style.display = chatbotWindow.style.display === 'none' ? 'flex' : 'none';
@@ -271,20 +274,22 @@
 
         async function sendMessage() {
             const userMessage = document.getElementById('userInput').value.trim();
-            if (userMessage && userMessage !== "Send a message...") {
-                const currentTime = new Date().toLocaleString();
-                appendMessage('You', userMessage, currentTime);
+            if (userMessage) {
+                appendMessage('You', userMessage);
+                document.getElementById('userInput').value = '';
                 const aiResponse = await getAIResponse(userMessage);
-                appendMessage('Chatbot', aiResponse, currentTime);
+                appendMessage('Chatbot', aiResponse);
             }
         }
 
-        function appendMessage(sender, message, time) {
+        function sendQuickMessage(message) {
+            document.getElementById('userInput').value = message;
+            sendMessage();
+        }
+
+        function appendMessage(sender, message) {
             const messageDiv = document.createElement('div');
-            messageDiv.innerHTML = `
-                <strong>${sender}:</strong> ${message}
-                <div class="message-time">${time}</div>
-            `;
+            messageDiv.innerHTML = `<strong>${sender}:</strong> ${message}`;
             chatMessages.appendChild(messageDiv);
             chatMessages.scrollTop = chatMessages.scrollHeight;
         }
@@ -295,7 +300,7 @@
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
-                        'Authorization': 'Bearer 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'
+                        'Authorization': 'Bearer sk-YOUR-KEY-HERE'
                     },
                     body: JSON.stringify({
                         model: 'gpt-3.5-turbo',
@@ -306,10 +311,18 @@
 
                 if (!response.ok) throw new Error('Failed to fetch AI response');
                 const data = await response.json();
-                return data.choices[0].message.content.trim();
+                const aiMessage = data.choices[0].message.content.trim();
+
+                if (!aiMessage || aiMessage.toLowerCase().includes("sorry")) {
+                    suggestionButtons.style.display = 'flex';
+                    return "I didn't understand that. Here are some suggestions:";
+                } else {
+                    suggestionButtons.style.display = 'none';
+                    return aiMessage;
+                }
             } catch (error) {
                 console.error('Error:', error);
-                return "Sorry, I couldn't process your request. Please try again later.";
+                return "I couldn't process your request. Please try again.";
             }
         }
     </script>
