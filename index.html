@@ -16,7 +16,6 @@
             padding-bottom: 0px;
         }
 
-        /* Navigation Bar Styling */
         .navbar {
             overflow: hidden;
             background-color: black;
@@ -104,7 +103,6 @@
             text-align: center;
         }
 
-        /* Chatbot Styling */
         .chatbot-icon {
             width: 60px;
             height: 60px;
@@ -128,7 +126,7 @@
 
         .chatbot-window {
             width: 350px;
-            height: 450px;
+            height: 400px; /* Adjusted height */
             background-color: #fff;
             position: fixed;
             bottom: 80px;
@@ -183,7 +181,6 @@
             border-radius: 5px;
         }
 
-        /* Left icons (file, emojis, send arrow) */
         .left-icons {
             display: flex;
             align-items: center;
@@ -202,16 +199,25 @@
         }
 
         .user-message {
+            background-color: red;
+            color: black;
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 10px;
             text-align: right;
         }
 
         .chatbot-message {
+            background-color: black;
+            color: white;
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 10px;
             text-align: left;
         }
     </style>
 </head>
 <body>
-    <!-- Navigation Bar -->
     <div class="navbar">
         <a href="#" class="active">Home</a>
         <a href="https://www.manutd.com/en/players-and-staff" target="_blank">Players</a>
@@ -250,12 +256,11 @@
         <p>&copy; 2024 Man United Fan Page | All Rights Reserved</p>
     </footer>
 
-    <!-- Chatbot -->
     <div class="chatbot-icon" onclick="toggleChatbot()">
         <img src="https://img.icons8.com/ios-filled/50/ffffff/chat.png" alt="Chat Icon">
     </div>
     <div class="chatbot-window" id="chatbotWindow">
-        <div class="chatbot-header" id="chatbotHeader">Chatbot</div>
+        <div class="chatbot-header">Chatbot</div>
         <div class="chatbot-messages" id="chatMessages"></div>
         <div class="chatbot-footer">
             <div class="left-icons">
@@ -272,9 +277,7 @@
     <script>
         const chatbotWindow = document.getElementById('chatbotWindow');
         const chatMessages = document.getElementById('chatMessages');
-        const chatbotHeader = document.getElementById('chatbotHeader');
-        let isFirstMessage = true;
-
+        
         function toggleChatbot() {
             chatbotWindow.style.display = chatbotWindow.style.display === 'none' ? 'flex' : 'none';
         }
@@ -289,21 +292,15 @@
             }
         }
 
-        function appendMessage(sender, message, time, messageClass) {
+        function appendMessage(sender, message, time, className) {
             const messageDiv = document.createElement('div');
-            messageDiv.classList.add(messageClass);
+            messageDiv.classList.add(className);
             messageDiv.innerHTML = `
                 <strong>${sender}:</strong> ${message}
                 <div class="message-time">${time}</div>
             `;
             chatMessages.appendChild(messageDiv);
             chatMessages.scrollTop = chatMessages.scrollHeight;
-
-            if (isFirstMessage) {
-                const date = new Date().toLocaleDateString();
-                chatbotHeader.innerText = `Chatbot - ${date}`;
-                isFirstMessage = false;
-            }
         }
 
         async function getAIResponse(question) {
@@ -331,3 +328,4 @@
     </script>
 </body>
 </html>
+
